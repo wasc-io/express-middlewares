@@ -1,7 +1,6 @@
 import connect from 'connect';
 
 import helmet from 'helmet';
-import validator from 'express-validator';
 import bodyParser from 'body-parser';
 import serviceVersion from 'service-version';
 import serviceName from 'service-name';
@@ -13,7 +12,6 @@ const customMiddlewares = {
   logger,
   internalToken,
   helmet,
-  validator,
   bodyParserJson: bodyParser.json,
   bodyParserUrl: bodyParser.urlencoded,
   serviceVersion,

@@ -27,7 +27,6 @@ Import the module and use it. It works with CJS `require` as well.
 - [Helmet](https://github.com/helmetjs/helmet)
 - [BodyParser](https://github.com/expressjs/body-parser) with configuration for json and urlencoded encoding
 - [Cors](https://github.com/expressjs/cors)
-- [ExpressValidator](https://github.com/ctavan/express-validator)
 - [ServiceVersion](https://github.com/wasc-io/service-version)
 
 ## Configuration
