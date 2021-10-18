@@ -35,7 +35,7 @@
     "service-version": "^1.0.0"
   },
   "devDependencies": {
-    "@wasc/tools": "^5.11.1",
+    "@wasc/tools": "5.14.22",
     "rollup": "^2.26.5",
     "rollup-plugin-commonjs": "^10.1.0",
     "standard-version": "^9.0.0"
