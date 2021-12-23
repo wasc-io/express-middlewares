@@ -78,4 +78,5 @@ app.get('/', (request, response) => {
 });
 ```
 
-## Have fun coding!
+This was made by [Wasc](https://wasc.me)
+
