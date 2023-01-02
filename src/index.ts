@@ -1,7 +1,7 @@
-import connect from 'connect';
+import * as express from 'express';
 
-import helmet from 'helmet';
-import bodyParser from 'body-parser';
+import * as helmet from 'helmet';
+import * as bodyParser from 'body-parser';
 import serviceVersion from 'service-version';
 import serviceName from 'service-name';
 import cors from 'cors';
@@ -17,25 +17,31 @@ const customMiddlewares = {
 
 const functions = Object.keys(customMiddlewares);
 
-const defaultConfiguration = {
+type ConfigurationOptions = {
+  helmet?: boolean | helmet.HelmetOptions;
+  bodyParserJson?: boolean | bodyParser.OptionsJson;
+  bodyParserUrl?: boolean | bodyParser.OptionsUrlencoded;
+  serviceVersion?: boolean;
+  serviceName?: boolean;
+  cors?: boolean | cors.CorsOptions;
+};
+
+const defaultConfiguration: ConfigurationOptions = {
   bodyParserUrl: {
     extended: true,
   },
 };
 
-/**
- * Custom middlewares
- * @param {any} options
- * @return {Object} An object of middleware functions
- */
-export default function middlewares(options = {}) {
+export default function middlewares(
+  options: ConfigurationOptions = {},
+): express.Router {
   if (options.constructor.name === 'IncomingMessage') {
     throw new Error(
       'It appears you have done something like `app.use(middlewares)`, but it should be `app.use(middlewares())`.',
     );
   }
 
-  const chain = connect();
+  const router = express.Router();
 
   functions.forEach((middlewareName) => {
     const middleware = customMiddlewares[middlewareName];
@@ -49,11 +55,11 @@ export default function middlewares(options = {}) {
     }
 
     if (middlewareOptions != null) {
-      chain.use(middleware(middlewareOptions));
+      router.use(middleware(middlewareOptions));
     } else {
-      chain.use(middleware());
+      router.use(middleware());
     }
   });
 
-  return chain;
+  return router;
 }
