@@ -5,10 +5,8 @@ import bodyParser from 'body-parser';
 import serviceVersion from 'service-version';
 import serviceName from 'service-name';
 import cors from 'cors';
-import internalToken from './custom/internalToken';
 
 const customMiddlewares = {
-  internalToken,
   helmet,
   bodyParserJson: bodyParser.json,
   bodyParserUrl: bodyParser.urlencoded,
