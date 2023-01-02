@@ -5,11 +5,9 @@ import bodyParser from 'body-parser';
 import serviceVersion from 'service-version';
 import serviceName from 'service-name';
 import cors from 'cors';
-import logger from './custom/logger';
 import internalToken from './custom/internalToken';
 
 const customMiddlewares = {
-  logger,
   internalToken,
   helmet,
   bodyParserJson: bodyParser.json,
@@ -41,7 +39,7 @@ export default function middlewares(options = {}) {
 
   const chain = connect();
 
-  functions.forEach(middlewareName => {
+  functions.forEach((middlewareName) => {
     const middleware = customMiddlewares[middlewareName];
     const middlewareOptions = Object.assign(
       defaultConfiguration[middlewareName] || {},
